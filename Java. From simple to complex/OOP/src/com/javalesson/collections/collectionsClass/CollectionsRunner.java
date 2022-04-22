@@ -18,34 +18,43 @@ public  class CollectionsRunner {
         }*/
 
         Collections.shuffle(deckOfCards);
+        Collections.sort(deckOfCards);
 
-        System.out.println("\n\nCards after shuffle");
-
-        for(int i = 0; i < deckOfCards.size(); i++) {
-            System.out.printf("%-20s %s", deckOfCards.get(i), (i + 1) % 4 ==0 ? "\n" : " ");
+        Card card = new Card(Card.Suit.SPADES, Card.Face.Queen);
+        int i = Collections.binarySearch(deckOfCards, card);
+        if(i>0) {
+            System.out.println("Card was found at position " + i);
+        }else{
+            System.out.println("Card was not found");
         }
 
-        Collections.sort(deckOfCards,new CardComparator());
+        /*System.out.println("\n\nCards after shuffle");
+        printOutput(deckOfCards);
 
         //Collections.sort(deckOfCards);
         System.out.println("\n\nCards after sorting");
+        printOutput(deckOfCards);*/
+    }
+
+    private static void printOutput(List<Card> deckOfCards) {
         for(int i = 0; i < deckOfCards.size(); i++) {
             System.out.printf("%-20s %s", deckOfCards.get(i), (i + 1) % 4 ==0 ? "\n" : " ");
         }
     }
-   /* public static void main(String[] args) {
-        List<String> colors = new ArrayList<>();
 
-        colors.add("yellow");
-        colors.add("blue");
-        colors.add("green");
-        colors.add("black");
-        colors.add("red");
-
-        System.out.println("List before sorting " + colors);
-        Collections.sort(colors);
-        System.out.println("List after sorting " + colors);
-    }*/
+    /* public static void main(String[] args) {
+         List<String> colors = new ArrayList<>();
+ 
+         colors.add("yellow");
+         colors.add("blue");
+         colors.add("green");
+         colors.add("black");
+         colors.add("red");
+ 
+         System.out.println("List before sorting " + colors);
+         Collections.sort(colors);
+         System.out.println("List after sorting " + colors);
+     }*/
     public static class Card implements Comparable<Card>{
 
        private enum Suit {SPADES,HEARTS,CLUBS,DIMONDS}
