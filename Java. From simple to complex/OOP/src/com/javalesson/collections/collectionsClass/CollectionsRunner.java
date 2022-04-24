@@ -17,23 +17,27 @@ public  class CollectionsRunner {
             System.out.printf("%-20s %s", deckOfCards.get(i), (i + 1) % 4 ==0 ? "\n" : " ");
         }*/
 
-        Collections.shuffle(deckOfCards);
-        Collections.sort(deckOfCards);
+        //Collections.shuffle(deckOfCards);
+        //Collections.sort(deckOfCards);
 
         Card card = new Card(Card.Suit.SPADES, Card.Face.Queen);
         int i = Collections.binarySearch(deckOfCards, card);
-        if(i>0) {
+        if(i>=0) {
             System.out.println("Card was found at position " + i);
         }else{
             System.out.println("Card was not found");
         }
 
+        List <Card> cardList = new ArrayList<>(deckOfCards);
+        Collections.fill(cardList,card);
+        printOutput(cardList);
+
         /*System.out.println("\n\nCards after shuffle");
-        printOutput(deckOfCards);
+        printOutput(deckOfCards);*/
 
         //Collections.sort(deckOfCards);
-        System.out.println("\n\nCards after sorting");
-        printOutput(deckOfCards);*/
+        //System.out.println("\n\nCards after sorting");
+        //printOutput(deckOfCards);
     }
 
     private static void printOutput(List<Card> deckOfCards) {
@@ -59,7 +63,7 @@ public  class CollectionsRunner {
 
        private enum Suit {SPADES,HEARTS,CLUBS,DIMONDS}
 
-        private enum Face{Ace,Deuce,Three,Four,Five,Six,Eight,Nine,Ten,Jack,Queen,King}
+        private enum Face{Ace,Deuce,Three,Four,Five,Six,Seven,Eight,Nine,Ten,Jack,Queen,King}
 
         private final Suit suit;
 
