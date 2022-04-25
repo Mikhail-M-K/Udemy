@@ -17,8 +17,8 @@ public  class CollectionsRunner {
             System.out.printf("%-20s %s", deckOfCards.get(i), (i + 1) % 4 ==0 ? "\n" : " ");
         }*/
 
-        //Collections.shuffle(deckOfCards);
-        //Collections.sort(deckOfCards);
+        Collections.shuffle(deckOfCards);
+        Collections.sort(deckOfCards);
 
         Card card = new Card(Card.Suit.SPADES, Card.Face.Queen);
         int i = Collections.binarySearch(deckOfCards, card);
@@ -30,7 +30,17 @@ public  class CollectionsRunner {
 
         List <Card> cardList = new ArrayList<>(deckOfCards);
         Collections.fill(cardList,card);
-        printOutput(cardList);
+        Collections.addAll(cardList, card, card,card);
+        Collections.copy(cardList,deckOfCards);
+        int frequency = Collections.frequency(cardList, card);
+        System.out.println("Frequency of " + card +" is " + frequency);
+
+
+        System.out.println("Min : " + Collections.min(cardList));
+        System.out.println("Max : " + Collections.max(cardList));
+
+
+        //printOutput(cardList);
 
         /*System.out.println("\n\nCards after shuffle");
         printOutput(deckOfCards);*/
@@ -82,7 +92,20 @@ public  class CollectionsRunner {
            return face;
        }
 
-       @Override
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Card card = (Card) o;
+            return suit == card.suit && face == card.face;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(suit, face);
+        }
+
+        @Override
        public String toString() {
            return face + " of " + suit;
        }
