@@ -36,10 +36,7 @@ public class StackQueueLauncher {
 
         @Override
         public String toString() {
-            return "Passenger{" +
-                    "name='" + name + '\'' +
-                    ", surname='" + surname + '\'' +
-                    '}';
+            return "Passenger " + number + " is " + name + " " + surname;
         }
     }
 }
